@@ -1,0 +1,37 @@
+-----------------------------
+Mechanics Benchmark Problem 1
+-----------------------------
+
+The first problem is the deformation of a 1mm x 1mm x 10mm bar.
+
+The undeformed geometry is the region [0,10] x [0,1] x [0,1]
+
+Dirichlet boundary conditions: the left face (x=0) is fixed.
+
+Pressure boundary condition: 0.004 kPa pressure is applied to the bottom (z=0) face.
+Please note that the direction of the pressure boundary condition scales with the deformed normal, and its magnitude with deformed area.
+
+Parameters and constitutive law from Guccione et al. 1995 "Finite element stress analysis of left ventricular mechanics in the beating dog heart", i.e.
+W = C/2 (e^Q - 1)
+Q = b_f E11^2 + b_t (E_22^2 + E33^3 + E23^2+ E32^2) + b_fs (E_12^2 + E_21^2
+
+where
+C    = 0.876 kPa
+b_f  = 18.48
+b_t  = 3.58
+b_fs = 1.627
+
+The material is fully incompressible, and both mixed formulations and penalty methods may be used to achieve this.
+Note that although the meshes provided may be in a specific format, any type of elements is acceptable.
+
+For now, please report the deformed position of the node at undeformed location (10,1,1), i.e. the point furthest from the origin.
+
+
+Included in this zip file are results from Slava Gurev:
+ geometry.vtk – volume file that contains undeformed geometry for the mesh, all spatial units are in mm
+ boundary.vtk – surface file with boundary markers (has the same node numbering as geometry.vtk)
+  Pressure of 0.004 kPa was applied to the surface with marker “1”, displacements at the surface with marker “6” was fixed.
+ result.vtk – volume file that contains deformed mesh and Right Cauchy-Green deformation tensor components, components are calculated for the centroid of every cell
+
+Note that these meshes are examples for clarification of the problem geometry, and not suggested or required as the mesh used to solve the problem.
+
